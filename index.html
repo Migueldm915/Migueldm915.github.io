@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://static.vecteezy.com/system/resources/previews/035/752/907/non_2x/simple-minimalistic-seamless-pattern-playful-hand-drawn-cute-hearts-of-different-colors-on-a-white-background-sugar-sprinkles-on-a-donut-romantic-background-valentine-s-day-vector.jpg') no-repeat center center/cover;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 182, 193, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: 5px solid #ff4081;
+            max-width: 90%;
+            width: 450px;
+            height: 400px;
+            position: relative;
+        }
+        h1 {
+            color: #ff4081;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        #yes {
+            background-color: #ff4081;
+            color: white;
+        }
+        #no {
+            background-color: #fff;
+            color: #ff4081;
+            border: 2px solid #ff4081;
+            position: relative;
+        }
+        .hidden {
+            display: none;
+        }
+        img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .watermark {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine? ❤️</h1>
+        <div class="buttons">
+            <button id="yes">Yes</button>
+            <button id="no">No</button>
+        </div>
+        <div id="image" class="hidden">
+            <img src="https://png.pngtree.com/png-vector/20220428/ourmid/pngtree-smooth-glossy-heart-vector-file-ai-and-png-png-image_4557871.png" alt="Happy Couple" height="175">
+            <p>IT'S A DATE! ❤️</p>
+        </div>
+        <div class="watermark">JackBogart915 Sent this</div>
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yes');
+        const noButton = document.getElementById('no');
+        const imageDiv = document.getElementById('image');
+        const container = document.querySelector('.container');
+        
+        yesButton.addEventListener('click', () => {
+            imageDiv.classList.remove('hidden');
+        });
+
+        noButton.addEventListener('click', () => {
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = noButton.getBoundingClientRect();
+            
+            let newX, newY;
+            do {
+                newX = Math.random() * (containerRect.width - buttonRect.width - 40) + 20;
+                newY = Math.random() * (containerRect.height - buttonRect.height - 40) + 20;
+            } while (Math.abs(newX - (containerRect.width / 2)) < 50 && Math.abs(newY - (containerRect.height / 2)) < 50);
+            
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
+        });
+    </script>
+</body>
+</html>
